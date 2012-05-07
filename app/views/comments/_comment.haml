@@ -1,0 +1,14 @@
+%li  
+  -if comment.user
+    %p= comment.user.email
+  -else
+    %p 
+      Anonymous
+  %p= comment.content
+  =link_to "Edit", edit_comment_path(comment)
+  \|
+  =link_to "Delete", comment, :method => :delete
+  \|
+  =link_to "Add reply", new_comment_comment_path(comment)
+  %ul
+    =render :partial => "comments/comment", :collection => comment.comments

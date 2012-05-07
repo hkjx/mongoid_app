@@ -1,0 +1,23 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @article.title
+%p
+  %b Body:
+  = @article.body
+-if @article.user
+  %p
+    %b author:
+    = @article.user.email
+-else
+  %p
+    Anonymous
+= link_to 'Edit', edit_article_path(@article)
+\|
+= link_to 'Delete', @article, :method => :delete
+\|
+= link_to 'Add comment', new_article_comment_path(@article)
+%br
+%ul
+  =render :partial => "comments/comment", :collection => @article.comments

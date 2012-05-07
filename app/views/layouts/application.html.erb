@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MongoidApp</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <p class = "notice"> <%= notice %></p>
+  <p class = "alert"> <%= alert %></p> 
+
+  <% unless current_user%>
+	  <%= link_to "sign in", new_user_session_path %> |
+	  <%= link_to "sign up", new_user_registration_path %>
+  <% else %>
+  	  Hello <%= current_user.name ? current_user.name : current_user.email %><br>
+  	  youre logged at <%= current_user.role %><br>
+      <% if session[:provider] %>
+        <p>you logged by <%= session[:provider] %></p>
+      <%end%>
+  	  <%= image_tag current_user.avatar.url(:thumb)%> 
+      <p><%= link_to "sign out", destroy_user_session_path, :method => :delete %></p> 
+   <% end %>
+      <%= link_to "sign in with vkontakte", user_omniauth_authorize_path(:vkontakte) %> |
+      <%= link_to "sign in with twitter", user_omniauth_authorize_path(:twitter) %> |
+      <%= link_to "sign in with facebook", user_omniauth_authorize_path(:facebook) %>       
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
