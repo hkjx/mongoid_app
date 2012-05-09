@@ -2,31 +2,42 @@
 <html>
 <head>
   <title>MongoidApp</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "layout" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <p class = "notice"> <%= notice %></p>
-  <p class = "alert"> <%= alert %></p> 
-
-  <% unless current_user%>
-	  <%= link_to "sign in", new_user_session_path %> |
-	  <%= link_to "sign up", new_user_registration_path %>
-  <% else %>
-  	  Hello <%= current_user.name ? current_user.name : current_user.email %><br>
-  	  youre logged at <%= current_user.role %><br>
-      <% if session[:provider] %>
-        <p>you logged by <%= session[:provider] %></p>
-      <%end%>
-  	  <%= image_tag current_user.avatar.url(:thumb)%> 
-      <p><%= link_to "sign out", destroy_user_session_path, :method => :delete %></p> 
-   <% end %>
-      <%= link_to "sign in with vkontakte", user_omniauth_authorize_path(:vkontakte) %> |
-      <%= link_to "sign in with twitter", user_omniauth_authorize_path(:twitter) %> |
-      <%= link_to "sign in with facebook", user_omniauth_authorize_path(:facebook) %>       
+ 
 </head>
 <body>
+  <div id = "menu">
+    <% unless current_user%>
+      <span id = "regs">
+        <%= link_to "sign in", new_user_session_path %> or
+        <%= link_to "sign up", new_user_registration_path %>
+      </span>
+    <% else %>
+      <span id = "regs">
+        Hello <%= current_user.name ? current_user.name : current_user.email %>!   
+        <%= link_to "sign out", destroy_user_session_path, :method => :delete %>
+      </span> 
+      <span id = "regs"> you are <%= current_user.role.humanize %></span>
 
-<%= yield %>
-
+      <span id = "regs" style = "margin-left: 100px;"> 
+          <% if session[:provider] %>
+            loged by <%= session[:provider] %>
+          <%end%>
+      </span>
+    <% end %>
+     <span id = "links">
+        <%= link_to image_tag("vk.png", :size => "25x25"), user_omniauth_authorize_path(:vkontakte) %> 
+        <%= link_to image_tag("facebook.png", :size => "25x25"), user_omniauth_authorize_path(:facebook) %>    
+        <%= link_to image_tag("twitter.png", :size => "25x25"), user_omniauth_authorize_path(:twitter) %> 
+      </span>  
+  </div>  
+  <div id = "content-menu">
+    <%= link_to "Create article", new_article_url %>
+  </div>   
+  <div id = "content">
+      <%= yield %>
+  </div>
 </body>
 </html>

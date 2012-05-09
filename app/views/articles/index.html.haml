@@ -1,25 +1,6 @@
-%h1 Listing articles
-
-%table
-  %tr
-    %th Title
-    %th Body
-    %th
-    %th
-    %th
-
-  - @articles.each do |article|
-    %tr
-      %td= article.title
-      %td= article.body
-      -if article.user
-        %td= article.user.email
-      -else
-        %td Anonymous
-      %td= link_to 'Show', article
-      %td= link_to 'Edit', edit_article_path(article)
-      %td= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Article', new_article_path
+- @articles.each do |article|
+    %h3= article.title
+    %span#dop
+        published
+        = article.user.name ? article.user.name : article.user.email 
+    %p= article.body

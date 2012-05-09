@@ -1,0 +1,69 @@
+/*
+ * require_self
+ * require_tree .
+
+ */
+
+ $main-background-color: #ffffff;
+ $head-menu-background-color: #ccccff;
+ $content-background-color: #222222;
+ $main-font-color: #111111;
+ $content-border-color: #d5d5d5;
+
+#wrap {
+ margin: 0px;
+ padding: 0px;
+}
+#header {
+ margin: 0px;
+ padding: 0px;
+}
+body {
+ margin: 0px;
+ padding: 0px;
+	div#menu {
+		vertical-align: middle;
+		span#links {
+
+			float: right;
+			margin: 0px 10px 0px 10px;
+		}
+		span#regs {
+			margin-left: 20px;
+		}		
+		font: {
+		    size: 14px;
+		    family: "Lucida Grande","Lucida Sans Unicode",Verdana,Arial,Helvetica,sans-serif;
+		  };
+		padding: 12px 0px 12px 0px;
+		background-color: $head-menu-background-color;
+		width: 100%;
+		border-bottom: none;
+		
+	}
+	div#content-menu {
+		padding: 12px 0px 12px 0px;
+		margin: 50px auto 0px;
+		width: 80%;			
+		background-color: #666699;
+		font: {
+		    size: 14px;
+		    family: "Lucida Grande","Lucida Sans Unicode",Verdana,Arial,Helvetica,sans-serif;
+		  };		
+		border: 1px solid $content-border-color;
+		border-bottom: none;
+	}
+	div#content {	
+		margin: 0 auto;
+		width: 80%;			
+		border: 1px solid $content-border-color;
+	}
+	span#dop {
+		margin-top: 0px;
+		font: {
+		    size: 10px;
+		    family: "Lucida Grande","Lucida Sans Unicode",Verdana,Arial,Helvetica,sans-serif;
+		  };			
+	}
+  background-color: $main-background-color;
+}
