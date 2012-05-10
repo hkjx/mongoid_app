@@ -1,6 +1,13 @@
 - @articles.each do |article|
-    %h3= article.title
+    %h3= link_to article.title, article_path(article)
     %span#dop
         published
         = article.user.name ? article.user.name : article.user.email 
     %p= article.body
+    %p 
+        = link_to 'Edit', edit_article_path(article)
+        \|
+        = link_to 'Delete', @article, :method => :delete
+        \|        
+        =link_to "comments:", article_path(article)
+        =article.comments.size
